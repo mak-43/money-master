@@ -1,64 +1,64 @@
 
-    const minus = document.getElementById('negative-value')
-    const exccedIncome = document.getElementById('expenses-over')
-    const exceedBalance=document.getElementById('exceed-balance')
-    const percentNegative=document.getElementById('negetive-disna')
-    exccedIncome.style.display='none'
-    minus.style.display = 'none'
-    exceedBalance.style.display = 'none'
-    percentNegative.style.display='none'
+
+    // negative check function
 function errorNegative() {
     const err = document.getElementsByClassName('errors')
-
-
     for (var i = 0; i < err.length; i++) {
         if (err[i].value < 0) {
             
             return false
         }
-       
-
     }
 }
-function blankError(){
-     if(income==''||food==''||rent==''||cloths==''){
-
-     }
+//get elements whith text
+function onlyElement(id){
+    let temp=document.getElementById(id)
+    return temp
 }
+const minusError = onlyElement('negative-value')
+const exccedIncome = onlyElement('expenses-over')
+const exceedBalance=onlyElement('exceed-balance')
+const percentNegative=onlyElement('negetive-disna')
+exccedIncome.style.display='none'
+minusError.style.display = 'none'
+exceedBalance.style.display = 'none'
+percentNegative.style.display='none'
+
+// get elements with value
+function getElement(id){
+    let common=parseInt(document.getElementById(id).value)
+    return common
+}
+///expenses balance  items calculation
 document.getElementById('calculate').addEventListener('click', function () {
-    
-    if (errorNegative() == false) {
-      
-        exccedIncome.style.display='none'
-        minus.style.display = 'block'
-    }
 
+    if (errorNegative() == false) {     
+        exccedIncome.style.display='none'
+        minusError.style.display = 'block'
+    }
     if (errorNegative() != false) {
         exccedIncome.style.display='none'
-        minus.style.display = 'none'
-        const income = parseInt(document.getElementById('income').value)
-        const food = parseInt(document.getElementById('food').value)
-        const rent = parseInt(document.getElementById('rent').value)
-        const cloths = parseInt(document.getElementById('cloth').value)
-        const totalExpenses = document.getElementById('total-expenses')
-        const balanceAfterpurchase = document.getElementById('balance')
+        minusError.style.display = 'none'
+        const income =  getElement('income')
+        const food =getElement('food') 
+        const rent = getElement('rent')
+        const cloths =  getElement('cloth')
+        const totalExpenses =onlyElement('total-expenses')
+        const balanceAfterpurchase = onlyElement('balance')
         const total = food + rent + cloths
         const balanceAfterpurchaseField = income - total
-
         if(income<total)
         {
-            exccedIncome.style.display='block'
-            
+            exccedIncome.style.display='block'            
         }
-        else{
-            
+        else{           
         balanceAfterpurchase.innerText = balanceAfterpurchaseField
         totalExpenses.innerText = total
         }
     }
 })
 
-
+//percentage calculation 
 document.getElementById('saved-buttond').addEventListener('click', function () {
    
     if (errorNegative() == false) {
@@ -68,16 +68,17 @@ document.getElementById('saved-buttond').addEventListener('click', function () {
 
   if(errorNegative()!=false){
     percentNegative.style.display='none'
-    const income = parseInt(document.getElementById('income').value)
-    const percentInput = parseInt(document.getElementById('save-input').value)
+    const income =getElement('income')
+    const percentInput = getElement('save-input')
+    
     const savingAmount = document.getElementById('saving-amount')
     const remainBalance = document.getElementById('remaining')
-    const balanceUpdate = parseInt(document.getElementById('balance').innerText)
+    const balanceUpdate = parseInt(onlyElement('balance').innerText)
 
     const percent = (percentInput / 100) * income
     savingAmount.innerText = percent
     
-    
+    ///check balance and saving amount
     if(balanceUpdate<percent)
     {
        exceedBalance.style.display='block'
