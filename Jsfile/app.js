@@ -1,12 +1,13 @@
-const minus = document.getElementById('negative-value')
-const exccedIncome = document.getElementById('expenses-over')
-const exceedBalance=document.getElementById('exceed-balance')
-exccedIncome.style.display='none'
-minus.style.display = 'none'
-exceedBalance.style.display = 'none'
 
-
-function error() {
+    const minus = document.getElementById('negative-value')
+    const exccedIncome = document.getElementById('expenses-over')
+    const exceedBalance=document.getElementById('exceed-balance')
+    const percentNegative=document.getElementById('negetive-disna')
+    exccedIncome.style.display='none'
+    minus.style.display = 'none'
+    exceedBalance.style.display = 'none'
+    percentNegative.style.display='none'
+function errorNegative() {
     const err = document.getElementsByClassName('errors')
 
 
@@ -19,24 +20,20 @@ function error() {
 
     }
 }
-function percetError(){
+function blankError(){
+     if(income==''||food==''||rent==''||cloths==''){
 
-    
-
+     }
 }
 document.getElementById('calculate').addEventListener('click', function () {
-
-    error()
-
-    if (error() == false) {
+    
+    if (errorNegative() == false) {
       
         exccedIncome.style.display='none'
         minus.style.display = 'block'
-
-
     }
 
-    if (error() != false) {
+    if (errorNegative() != false) {
         exccedIncome.style.display='none'
         minus.style.display = 'none'
         const income = parseInt(document.getElementById('income').value)
@@ -59,14 +56,18 @@ document.getElementById('calculate').addEventListener('click', function () {
         totalExpenses.innerText = total
         }
     }
-
-
-
 })
 
 
 document.getElementById('saved-buttond').addEventListener('click', function () {
    
+    if (errorNegative() == false) {
+      
+        percentNegative.style.display='block'
+    }
+
+  if(errorNegative()!=false){
+    percentNegative.style.display='none'
     const income = parseInt(document.getElementById('income').value)
     const percentInput = parseInt(document.getElementById('save-input').value)
     const savingAmount = document.getElementById('saving-amount')
@@ -75,11 +76,16 @@ document.getElementById('saved-buttond').addEventListener('click', function () {
 
     const percent = (percentInput / 100) * income
     savingAmount.innerText = percent
-    remainBalance.innerText = balanceUpdate - parseInt(savingAmount.innerText)
     
     
-
-
-
-
+    if(balanceUpdate<percent)
+    {
+       exceedBalance.style.display='block'
+    }
+    else{
+        exceedBalance.style.display='none'
+        remainBalance.innerText = balanceUpdate - parseInt(savingAmount.innerText)
+       
+    }
+  }
 })
