@@ -1,6 +1,6 @@
 
 
-    // negative check function
+// negative check function
 function errorNegative() {
     const err = document.getElementsByClassName('errors')
     for (var i = 0; i < err.length; i++) {
@@ -15,6 +15,12 @@ function onlyElement(id){
     let temp=document.getElementById(id)
     return temp
 }
+// get elements with value
+function getElement(id){
+    let common=parseInt(document.getElementById(id).value)
+    return common
+}
+
 const minusError = onlyElement('negative-value')
 const exccedIncome = onlyElement('expenses-over')
 const exceedBalance=onlyElement('exceed-balance')
@@ -24,11 +30,7 @@ minusError.style.display = 'none'
 exceedBalance.style.display = 'none'
 percentNegative.style.display='none'
 
-// get elements with value
-function getElement(id){
-    let common=parseInt(document.getElementById(id).value)
-    return common
-}
+
 ///expenses balance  items calculation
 document.getElementById('calculate').addEventListener('click', function () {
 
@@ -45,16 +47,26 @@ document.getElementById('calculate').addEventListener('click', function () {
         const cloths =  getElement('cloth')
         const totalExpenses =onlyElement('total-expenses')
         const balanceAfterpurchase = onlyElement('balance')
-        const total = food + rent + cloths
-        const balanceAfterpurchaseField = income - total
-        if(income<total)
-        {
-            exccedIncome.style.display='block'            
+        if(food>=0 && rent>=0 && cloths>=0 && income>=0){
+
+            const total = food + rent + cloths
+            const balanceAfterpurchaseField = income - total
+
+        //exceed check
+            if(income<total)
+                {
+                        exccedIncome.style.display='block'            
+                }
+                else
+                {           
+                    balanceAfterpurchase.innerText = balanceAfterpurchaseField
+                    totalExpenses.innerText = total
+                }
         }
-        else{           
-        balanceAfterpurchase.innerText = balanceAfterpurchaseField
-        totalExpenses.innerText = total
-        }
+        else(
+            alert("Please Enter a number")
+        )
+        
     }
 })
 
@@ -75,18 +87,23 @@ document.getElementById('saved-buttond').addEventListener('click', function () {
     const remainBalance = document.getElementById('remaining')
     const balanceUpdate = parseInt(onlyElement('balance').innerText)
 
-    const percent = (percentInput / 100) * income
-    savingAmount.innerText = percent
+    if(percentInput>=0){
+        const percent = (percentInput / 100) * income
+         savingAmount.innerText = percent
     
-    ///check balance and saving amount
-    if(balanceUpdate<percent)
-    {
-       exceedBalance.style.display='block'
+         ///check balance and saving amount
+        if(balanceUpdate<percent)
+        {
+            exceedBalance.style.display='block'
+        }
+        else{
+            exceedBalance.style.display='none'
+            remainBalance.innerText = balanceUpdate - parseInt(savingAmount.innerText)
+        
+        }
     }
     else{
-        exceedBalance.style.display='none'
-        remainBalance.innerText = balanceUpdate - parseInt(savingAmount.innerText)
-       
+        alert("Enter a number")
     }
   }
 })
