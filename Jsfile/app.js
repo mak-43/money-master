@@ -15,7 +15,7 @@ function error() {
             
             return false
         }
-        
+       
 
     }
 }
@@ -48,11 +48,15 @@ document.getElementById('calculate').addEventListener('click', function () {
         const total = food + rent + cloths
         const balanceAfterpurchaseField = income - total
 
-        balanceAfterpurchase.innerText = balanceAfterpurchaseField
-        totalExpenses.innerText = total
         if(income<total)
         {
             exccedIncome.style.display='block'
+            
+        }
+        else{
+            
+        balanceAfterpurchase.innerText = balanceAfterpurchaseField
+        totalExpenses.innerText = total
         }
     }
 
@@ -73,9 +77,6 @@ document.getElementById('saved-buttond').addEventListener('click', function () {
     savingAmount.innerText = percent
     remainBalance.innerText = balanceUpdate - parseInt(savingAmount.innerText)
     
-    if(balanceUpdate<savingAmount){
-        exceedBalance.style.display='block'
-    }
     
 
 
