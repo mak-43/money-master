@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,10 +10,11 @@
     <link rel="stylesheet" href="./bootstrapfile/bootstrap.min.css">
 
 </head>
+
 <body>
-    
+
     <section class="  container mx-auto rounded-3 bg-light my-5 ">
-       
+
 
         <div class="row  ">
             <h1 class="text-center ">Saving Master $$$</h1>
@@ -21,37 +23,47 @@
                     <img class="img-fluid rounded" src="./images/calc.jpg" alt="">
                 </div>
             </div>
-            
+
 
             <!-- --------------------Calculation Part-------------------- -->
 
             <div style="background-color:rgb(230, 225, 225)" class="col-md-6 col-12   rounded p-5  text-center my-5  ">
                 <div>
-                    <h4  class="m-2">Income</h4> 
+                    <!-- income -->
+                    <h4 class="m-2">Income</h4>
                     <label class="my-3" for="">Income: </label>
-                    <input id="income"  class="p-1" value="10000" type="text" name="" id="">
-                    <h4  class="m-3">Expenses</h4>
+                    <input id="income" class="p-1 rounded neg errors" value="10000" type="number" name="" id="">
+                    <!-- expenses -->
+                    <h4 class="m-3">Expenses</h4>
 
                     <label class="m-2" for="">Food: </label>
-                    <input id="food"   class="my-2 p-1" value="3000" type="text" name="" id=""> <br>
+                    <input id="food" class="my-2 rounded p-1 neg errors" value="3000" type="number" name="" id=""> <br>
                     <label class="m-2" for="">Rent: </label>
-                    <input id="rent" class="my-2 p-1" value="2000" type="text" name="" id=""> <br>
-                    <label class="my-2" for="">Clothes: </label>
+                    <input id="rent" class="my-2 rounded p-1 neg errors" value="2000" type="number" name="" id=""> <br>
+                    <label class="my-2 " for="">Clothes: </label>
 
-                    <input id="cloth" class="p-1" type="text" name="" value="500"> <br>
+                    <input id="cloth" class="p-1 rounded neg errors" type="number" name="" value="500"> <br>
+                    <!-- error messsage for  negative and string value -->
+                    <p id="negative-value" class="my-3 text-danger fs-4  ">Please enter a positive number in the input 
+                        field</p>
+                    <p id="character" class="d-none">Please enter a number not character</p>
+                    <!-- calculate button -->
                     <button id="calculate" class="btn btn-primary m-3 px-5 py-2 fw-bold ">Calculate</button>
+                    <p id="expenses-over" class=" text-danger fs-4  ">Expenses exceed over income</p>
                     <h5 class="my-2">Total Expenses: <span id="total-expenses">5500</span> </h5>
-                    <h5 class="my-4">Balance: <span id="balance" >4500</span> </h5>
-                </div>
-                <div>
+                    <h5 class="my-4">Balance: <span id="balance">4500</span> </h5>
 
-                    <span class="my-4 mx-2"> Save:</span> <input id="save-input" class="d-inline text-center " type="text" value="20"> % <button id="saved-buttond" class="mx-2 btn btn-primary px-5 fw-bold ">Save</button>  
-
+                    <!-- percentage -->
+                    <span class="my-4 mx-2"> Save:</span> <input id="save-input" class="d-inline text-center rounded"
+                        type="number" value="20"> % <button id="saved-buttond"
+                        class="mx-2 btn btn-primary px-5 fw-bold ">Save</button>
+                    <!-- saving and remaining -->
+                    <p id="exceed-balance" class=" text-danger fs-4  ">You can't saving</p>
                     <h5 class="my-2">Saving Amount: <span id="saving-amount">2000</span> </h5>
                     <h5>Remaining Balance: <span id="remaining">2500</span></h5>
-                    
 
-                    
+
+
 
                 </div>
 
@@ -60,10 +72,11 @@
 
 
     </section>
-  
-    
+
+
 
     <script src="./bootstrapfile/bootstrap.bundle.min.js"></script>
     <script src="./Jsfile/app.js"></script>
 </body>
+
 </html>
